@@ -1,22 +1,17 @@
-.PHONY: compile rel cover test dialyzer
-REBAR=./rebar3
+.PHONY: compile deps clean
+
+DIALYZER_APPS = kernel stdlib sasl erts inets crypto
+
+all: deps compile test
 
 compile:
-	$(REBAR) compile
+	@./rebar compile
+
+deps:
+	@./rebar get-deps
 
 clean:
-	$(REBAR) clean
+	@./rebar clean
 
-cover: test
-	$(REBAR) cover
 
-test: compile
-	$(REBAR) as test do eunit
-
-dialyzer:
-	$(REBAR) dialyzer
-
-xref:
-	$(REBAR) xref
-
-check: test dialyzer xref
+include tools.mk
