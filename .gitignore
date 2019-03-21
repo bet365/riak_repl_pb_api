@@ -1,5 +1,6 @@
-.rebar/
-deps
 ebin
 .eunit
 .local_dialyzer_plt
+_build/
+src/*_pb.erl
+include/*_pb.hrl
